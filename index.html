@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>AI Video Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#080b14;--panel:#111827;--muted:#9ca3af;--accent:#8b5cf6;--cyan:#22d3ee}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#1b1740 0,#080b14 55%);color:#f9fafb;font-family:Arial,sans-serif;min-height:100vh}
+header{padding:20px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff14}
+.logo{font-weight:800;font-size:20px}.logo span{color:#a78bfa}
+.tag{font-size:12px;color:#a7f3d0;border:1px solid #166534;border-radius:30px;padding:7px 10px}
+main{width:min(720px,92%);margin:42px auto}
+.hero{text-align:center;margin-bottom:30px}
+.eyebrow{color:#c4b5fd;font-size:12px;letter-spacing:2px;font-weight:bold}
+h1{font-size:clamp(32px,8vw,54px);line-height:1.08;margin:14px 0}
+h1 span{background:linear-gradient(90deg,#c4b5fd,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{color:var(--muted);line-height:1.6}
+.card{background:#111827ed;border:1px solid #ffffff16;border-radius:20px;padding:23px;box-shadow:0 20px 60px #0005}
+label{display:block;font-size:14px;font-weight:bold;margin:17px 0 9px}
+textarea,select,input{width:100%;background:#080b14;color:white;border:1px solid #374151;border-radius:11px;padding:13px;font:inherit}
+textarea{min-height:105px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+button{width:100%;border:0;border-radius:12px;padding:15px;font-size:15px;font-weight:bold;color:white;background:linear-gradient(100deg,#7c3aed,#0891b2);margin-top:22px;cursor:pointer}
+button:active{opacity:.8}
+.note{font-size:12px;margin-top:14px}
+.status{margin-top:18px;padding:13px;border-radius:10px;background:#080b14;color:#c4b5fd;font-size:13px;line-height:1.6}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.feature{border:1px solid #ffffff12;border-radius:12px;padding:13px;text-align:center;font-size:12px;color:#d1d5db}
+footer{text-align:center;color:#6b7280;font-size:12px;padding:25px}
+@media(max-width:480px){main{margin:28px auto}.card{padding:17px}.grid{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">✦ AI <span>VIDEO STUDIO</span></div>
+  <div class="tag">● Web interface</div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">YOUR CREATIVE AI WORKSPACE</div>
+    <h1>Ideas into <span>Videos.</span></h1>
+    <p>Create a video concept, prepare your script, and build toward automated video generation from your phone.</p>
+  </section>
+  <section class="card">
+    <form id="videoForm">
+      <label for="topic">What video do you want to create?</label>
+      <textarea id="topic" placeholder="Example: Telugu motivational video about never giving up..." required></textarea>
+      <div class="grid">
+        <div>
+          <label for="duration">Video duration</label>
+          <select id="duration">
+            <option value="30">30 seconds</option>
+            <option value="45">45 seconds</option>
+            <option value="60">60 seconds</option>
+          </select>
+        </div>
+        <div>
+          <label for="language">Language</label>
+          <select id="language">
+            <option>Telugu</option>
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Tamil</option>
+          </select>
+        </div>
+      </div>
+      <label for="style">Video style</label>
+      <select id="style">
+        <option>Motivational Shorts</option>
+        <option>Educational Facts</option>
+        <option>News Explainer</option>
+        <option>Business Promotion</option>
+        <option>Storytelling</option>
+      </select>
+      <label for="voice">Narration</label>
+      <select id="voice">
+        <option>No voice — music or captions later</option>
+        <option>Voice narration</option>
+        <option>Silent video</option>
+      </select>
+      <button type="submit">Prepare Video Request →</button>
+    </form>
+    <div id="status" class="status">Ready. Enter your idea to prepare your video request.</div>
+    <p class="note">This first version saves your request locally in this page only. Video generation is not connected yet.</p>
+  </section>
+  <section class="features">
+    <div class="feature">📱 Mobile-friendly</div>
+    <div class="feature">🌏 Multiple languages</div>
+    <div class="feature">🎬 Shorts-ready ideas</div>
+  </section>
+</main>
+<footer>AI Video Studio · Built step by step</footer>
+<script>
+document.getElementById('videoForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const request={
+  topic:document.getElementById('topic').value.trim(),
+  duration:document.getElementById('duration').value+' seconds',
+  language:document.getElementById('language').value,
+  style:document.getElementById('style').value,
+  narration:document.getElementById('voice').value
+ };
+ document.getElementById('status').textContent=
+  'Request prepared! Topic: '+request.topic+
+  ' | Duration: '+request.duration+
+  ' | Language: '+request.language+
+  ' | Style: '+request.style+
+  ' | Audio: '+request.narration+
+  '. The generation engine will be connected in a later step.';
+});
+</script>
+</body>
+</html>
